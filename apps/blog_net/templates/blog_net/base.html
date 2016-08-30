@@ -4,7 +4,7 @@
     <meta charset="utf-8">
     <title>{% block title %}{% endblock %}</title>
     {% block js %}{% endblock %}
-    {% block css %}{% endblock %}
+    {% block css %}{% load static %}<link rel="stylesheet" href="{% static 'blog_net/css/main.css'%}">{% endblock %}
 </head>
 <body>
   <div id="top">My Blog</div>
