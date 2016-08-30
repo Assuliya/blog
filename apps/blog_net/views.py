@@ -8,3 +8,18 @@ def index(request):
     entries = Entry.objects.published_entries().order_by('-id')
     ctx = { 'entries': entries}
     return render(request, 'blog_net/index.html', ctx)
+
+def about(request):
+
+    # ctx = { 'entries': entries}
+    return render(request, 'blog_net/about.html')
+
+def archive(request):
+
+    # ctx = { 'entries': entries}
+    return render(request, 'blog_net/archive.html')
+
+def contact(request):
+
+    # ctx = { 'entries': entries}
+    return render(request, 'blog_net/contact.html')
