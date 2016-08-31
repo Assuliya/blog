@@ -123,4 +123,13 @@ STATIC_URL = '/static/'
 # TEMPLATE_CONTEXT_PROCESSOR = (
 # 'django.contrib.auth.context_processors.auth',
 # 'django.core.context.processors.media',
+# 'django.core.context_processors.csrf',
 # )
+
+
+EMAIL_USE_TLS = True
+EMAIL_HOST = 'smtp.gmail.com'
+EMAIL_HOST_USER = 'email@gmail.com'
+EMAIL_HOST_PASSWORD = 'password'
+EMAIL_PORT = 587
+# DEFAULT_FROM_EMAIL = EMAIL_HOST_USER
