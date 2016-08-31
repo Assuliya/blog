@@ -12,6 +12,7 @@ class ArchiveFeed(Feed):
 
     def item_link(self, item):
         return '/archive/'
+        # return reverse('archive', args=[item.pk])
 
     def item_title(self, item):
         return item.title
