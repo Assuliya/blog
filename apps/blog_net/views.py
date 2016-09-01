@@ -5,6 +5,7 @@ from django.contrib import messages
 from models import Entry
 from forms import ContactForm
 from django.core.mail import send_mail, mail_admins
+import signals
 
 
 def index(request):
@@ -41,6 +42,7 @@ def contact(request):
 
             # send_mail("Message from Blog","title: %s \ntext: %s \nemail: %s" %(title,text,email), "sends from my email to mine", [settings.EMAIL_HOST_USER])
 
+            signals.message_sent.send(sender=ContactForm, email=email)
     else:
         contact_form = ContactForm()
 

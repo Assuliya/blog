@@ -1,6 +1,10 @@
 from __future__ import unicode_literals
 from django.db import models
 from managers import EntryManager
+from django.db.models.signals import post_save
+import handlers
+from signals import message_sent
+
 
 class Entry(models.Model):
     title = models.CharField(max_length=64)
@@ -14,3 +18,7 @@ class Entry(models.Model):
 
     def __unicode__(self):
         return u"%s - %s" % (self.title, self.created)
+
+
+post_save.connect(handlers.model_saved, sender=Entry)
+message_sent.connect(handlers.message_sent)
