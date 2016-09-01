@@ -12,21 +12,27 @@
 {% block content %}
 
   <h2>Contact</h2>
-  {% if success %}
-  <h3>Data posted:</h3>
-  <p>Email: {{email}}</p>
-  <p>title: {{title}}</p>
-  <p>text: {{text}}</p>
+  {% if not contact_sent %}
+      {% if success %}
+      <h3>Data posted:</h3>
+      <p>Email: {{email}}</p>
+      <p>title: {{title}}</p>
+      <p>text: {{text}}</p>
 
+      {% else %}
+      <form action="." method="post">
+        {% csrf_token %}
+        {{ contact_form.as_p }}
+        <input type="submit" value="Send">
+        <input type="reset" value="Reset">
+
+      </form>
+      {% endif %}
   {% else %}
-  <form action="." method="post">
-    {% csrf_token %}
-    {{ contact_form.as_p }}
-    <input type="submit" value="Send">
-    <input type="reset" value="Reset">
-
-  </form>
+    <p>Sorry, already sent contact</p>
   {% endif %}
+
+
 {% endblock %}
 
 {% block footer %}
