@@ -40,10 +40,11 @@ INSTALLED_APPS = [
     'django.contrib.staticfiles',
     'django.contrib.sitemaps',
     'django.contrib.sites',
+    'django.contrib.flatpages',
 
 ]
 
-SITE_ID = 2
+SITE_ID = 3
 
 
 MIDDLEWARE = [

@@ -1,7 +1,7 @@
 {% extends "blog_net/index.html" %}
 
 {% block title %}
-  About Page
+  {{ flatpage.title}}
 {% endblock %}
 
 {% block navi %}
@@ -10,7 +10,7 @@
 {% endblock %}
 
 {% block content %}
-  Content
+  {{ flatpage.content}}
 {% endblock %}
 
 {% block footer %}
