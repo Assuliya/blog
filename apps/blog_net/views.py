@@ -6,6 +6,7 @@ from models import Entry
 from forms import ContactForm
 from django.core.mail import send_mail, mail_admins
 import signals
+from django.contrib.auth.decorators import login_required
 
 
 def index(request):
@@ -58,3 +59,8 @@ def contact(request):
     request.session.set_test_cookie()
 
     return render(request, 'blog_net/contact.html', ctx)
+
+@login_required
+def profile(request):
+    ctx = {}
+    return render(request, 'blog_net/profile.html', ctx)

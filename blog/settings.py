@@ -140,3 +140,6 @@ EMAIL_HOST_USER = 'email@gmail.com'
 EMAIL_HOST_PASSWORD = 'password'
 EMAIL_PORT = 587
 # DEFAULT_FROM_EMAIL = EMAIL_HOST_USER
+
+LOGIN_REDIRECT_URL = '/profile/'
+LOGIN_URL = '/login/'
