@@ -1,13 +1,13 @@
 {% extends "blog_net/index.html" %}
 
 {% block title %}
-  Login Page
+  Register Page
 {% endblock %}
 
 {% block content %}
   <form action="." method="post">
     {% csrf_token %}
     {{ form.as_p }}
-    <input type="submit" name="login">
+    <input type="submit" value="Register">
   </form>
 {% endblock %}

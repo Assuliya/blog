@@ -4,21 +4,6 @@
   {{ flatpage.title}}
 {% endblock %}
 
-{% block navi %}
-  <a href="{% url 'blog_index' %}">home</a> - <a href="{% url 'blog_about' %}">about</a> -
-  <a href="{% url 'blog_archive' %}">archive</a> - <a href="{% url 'blog_contact' %}">contact</a>
-  <br>
-  {% if user.is_authenticated %}
-    <a href="{% url 'accounts_profile' %}">profile</a> - <a href="{% url 'accounts_logout' %}">logout</a>
-  {% else %}
-    <a href="{% url 'accounts_login' %}">login</a>
-  {% endif %}
-{% endblock %}
-
 {% block content %}
   {{ flatpage.content}}
-{% endblock %}
-
-{% block footer %}
-  2011 - MyBlock
 {% endblock %}

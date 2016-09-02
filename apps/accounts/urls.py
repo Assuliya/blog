@@ -4,6 +4,8 @@ from . import views
 
 urlpatterns = [
     url(r'^profile/$', views.profile, name='accounts_profile'),
+    url(r'^register/$', views.register, name='accounts_register'),
+
     url(r'^login/$', login, kwargs={'template_name':'accounts/login.html'}, name='accounts_login'),
     url(r'^logout/$', logout, kwargs={'next_page':'/'}, name='accounts_logout'),
 
