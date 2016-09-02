@@ -32,6 +32,7 @@ ALLOWED_HOSTS = []
 
 INSTALLED_APPS = [
     'apps.blog_net',
+    'apps.accounts',
     'django.contrib.admin',
     'django.contrib.auth',
     'django.contrib.contenttypes',
@@ -143,3 +144,5 @@ EMAIL_PORT = 587
 
 LOGIN_REDIRECT_URL = '/profile/'
 LOGIN_URL = '/login/'
+
+AUTHENTICATION_BACKENDS = ('apps.accounts.auth.backends.MyModelBackend',)

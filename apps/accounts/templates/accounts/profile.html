@@ -4,9 +4,9 @@
   Profile Page
 {% endblock %}
 
-
 {% block content %}
-  {{ user }}'s profile
+  {{ profile.user }}'s profile
+  <div>{{profile.get_gender_display}}</div>
 {% endblock %}
 
 {% block footer %}
