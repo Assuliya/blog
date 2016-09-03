@@ -6,6 +6,9 @@ from models import Entry
 from forms import ContactForm
 from django.core.mail import send_mail, mail_admins
 import signals
+from django.db.models import Max, Min, Avg
+from django.db import connection
+from django.db.models import Count
 
 def index(request):
     entries = Entry.objects.published_entries().order_by('-id')
@@ -17,8 +20,15 @@ def about(request):
     return render(request, 'blog_net/about.html')
 
 def archive(request):
-    # ctx = { 'entries': entries}
-    return render(request, 'blog_net/archive.html')
+    base_qs = Entry.objects.filter(published=True)
+    in_archive = base_qs.aggregate(count=Count('pk'), max=Max('pk'), min=Min('pk'), avg=Avg('pk'))
+    month = connection.ops.date_trunc_sql('month', 'created')
+    per_month_count = base_qs.extra({'date':month}).values('date').annotate(count=Count('pk')).order_by('date')
+    ctx = { 'in_archive': in_archive,
+            'per_month_count': per_month_count,
+            'base_qs':base_qs
+    }
+    return render(request, 'blog_net/archive.html', ctx)
 
 def contact(request):
     success = False

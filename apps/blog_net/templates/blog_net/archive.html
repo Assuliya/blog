@@ -5,5 +5,22 @@
 {% endblock %}
 
 {% block content %}
-  Content
+  Archive
+  <p> In Archive: {{in_archive.count}}</p>
+  <p> In Archive Min: {{in_archive.min}}</p>
+  <p> In Archive Max: {{in_archive.max}}</p>
+  <p> In Archive Avg: {{in_archive.avg}}</p>
+
+<!-- Wasn't able to make per_month_count date respond to |date:"Y/M" so had to use double for loop -->
+  <div>
+    {% for m in per_month_count %}
+      {% for n in base_qs %}
+          {% if m.date == n.created|date:"Y-m-01"%}
+            {% ifchanged m.date %}
+              <div>{{n.created|date:"Y/M"}} : {{ m.count }}</div>
+            {% endifchanged %}
+          {% endif %}
+      {% endfor %}
+    {% endfor %}
+  </div>
 {% endblock %}
