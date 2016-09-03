@@ -6,13 +6,22 @@ from models import Entry
 from forms import ContactForm
 from django.core.mail import send_mail, mail_admins
 import signals
-from django.db.models import Max, Min, Avg
+from django.db.models import Max, Min, Avg, Count
 from django.db import connection
-from django.db.models import Count
+from django.core.paginator import Paginator, EmptyPage, PageNotAnInteger
+
 
 def index(request):
     entries = Entry.objects.published_entries().order_by('-id')
-    ctx = { 'entries': entries}
+    paginator = Paginator(entries, 2)
+    page_num = request.GET.get('page', 1)
+    try:
+        page = paginator.page(page_num)
+    except EmptyPage:
+        page = paginator.page(paginator.num_pages)
+    except PageNotAnInteger:
+        page = paginator.page(1)
+    ctx = { 'page': page}
     return render(request, 'blog_net/index.html', ctx)
 
 def about(request):

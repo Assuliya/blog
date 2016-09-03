@@ -16,11 +16,22 @@
 
 {% block content %}
   <h3>Entries:</h3>
-  {% for e in entries %}
+  {% for e in page.object_list %}
     <div class=""> {{e.title}} - {{e.created}}</div>
       <div class="">{{e.text}}</div>
     <br>
   {% endfor %}
+
+  {% if page.has_previous %}
+  <a href="?page={{page.previous_page_number}}">previous</a>
+  {% endif %}
+
+  | {{ page.number }} |
+
+  {% if page.has_next %}
+  <a href="?page={{page.next_page_number}}">next</a>
+  {% endif %}
+
 {% endblock %}
 
 {% block footer %}
